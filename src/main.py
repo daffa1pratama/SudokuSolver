@@ -1,14 +1,25 @@
 from FileHandler import *
 from Sudoku import *
 import numpy as np
+import sys
 
-f = FileHandler()
-container = f.read('tc1')
-# matrix = np.matrix(f.read('new'))
-# print(matrix)
-sudoku = Sudoku(container)
-# draw = sudoku.drawSudoku()
-sudoku.drawSudoku()
-sudoku.solve()
-# sudoku.drawSudoku()
-# f.write('tc1', draw)
+file = sys.argv[1].split('.')
+filename = file[0]
+fileformat = file[1]
+
+if (fileformat != 'txt' and fileformat != 'png') :
+    print("Error : Invalid file format. Please input txt/png file format !")
+    sys.exit
+else :
+    print("=== SUDOKU SOLVER ===")
+    if (fileformat == 'txt') :
+        board = readTextFile(filename)
+    elif (fileformat == 'png') :
+        board = readImageFile(filename)
+    # sudoku = Sudoku(board)
+    # sudoku.drawSudoku()
+    # result = sudoku.solve()
+    # print(result)
+    # result = sudoku.drawResult()
+    # result += sudoku.getNumberFive()
+    # writeFile(filename, result)
