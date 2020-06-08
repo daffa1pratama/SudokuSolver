@@ -9,8 +9,8 @@ class Sudoku :
         """
         Draw Sudoku board
         """
-        print(self.board)
         draw = "======= Before ======\n"
+        # Start draw sudoku
         for i in range(9) :
             for j in range(9) :
                 if (self.board[i][j] == 0) :
@@ -29,6 +29,7 @@ class Sudoku :
         Draw Sudoku board
         """
         draw = "======= After =======\n"
+        # Start draw sudoku
         for i in range(9) :
             for j in range(9) :
                 draw += str(self.result[i][j]) + ' '
@@ -46,6 +47,7 @@ class Sudoku :
         """
         result = "==== 5 Coordinate ===\n"
         count = 1
+        # Start get 5 coordinate
         for i in range(9) :
             for j in range(9) :
                 if (self.result[i][j] == 5) :
@@ -84,6 +86,7 @@ class Sudoku :
         Check whether the board is full
         or still has empty spot
         """
+        # Start checking element
         for i in range(9) :
             for j in range(9) :
                 if (self.board[i][j] == 0) :
@@ -100,8 +103,7 @@ class Sudoku :
             if not self.found :
                 self.found = True
                 self.result = copy.deepcopy(self.board)
-                print(self.result)
-            return self.board
+            return
         # Recurrences
         else :
             # Loop for every row
@@ -114,9 +116,8 @@ class Sudoku :
                             if (self.isValid(i, j, k)) :
                                 self.board[i][j] = k
                                 # Recursion
-                                if(self.solve()) :
-                                    return self.board
+                                self.solve()
                                 # Backtrack
                                 self.board[i][j] = 0
                         # Return here if all possibilities numbers were checked 
-                        return None
+                        return
